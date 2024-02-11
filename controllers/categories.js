@@ -25,11 +25,11 @@ router.post("/create-category", async (req, res, next) => {
 // Get all categorys
 router.get("/get-all-category", async (req, res, next) => {
     try {
-        const categorys = await Category.find({});
+        const categories = await Category.find({});
 
         res.status(200).json({
             success: true,
-            categorys,
+            categories,
         });
     } catch (error) {
         return res.status(400).json({

@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const { model, models, Schema } = mongoose;
 
-
 const CategorySchema = new Schema({
     name: {
         type: String,
