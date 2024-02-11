@@ -25,11 +25,11 @@ router.post("/create-quality", async (req, res, next) => {
 // Get all qualitys
 router.get("/get-all-quality", async (req, res, next) => {
     try {
-        const qualitys = await Category.find({});
+        const qualities = await Category.find({});
 
         res.status(200).json({
             success: true,
-            qualitys,
+            qualities,
         });
     } catch (error) {
         return res.status(400).json({
