@@ -4,6 +4,7 @@ import cors from 'cors';
 import supplierRoute from './controllers/supplier.js';
 import categoriesRoute from './controllers/categories.js';
 import qualitiesRoute from './controllers/qualties.js';
+import productsRoute from './controllers/productsRoute.js';
 
 
 const app = express();
@@ -14,6 +15,8 @@ app.use(cors());
 app.use('/api/supplier', supplierRoute);
 app.use('/api/category', categoriesRoute);
 app.use('/api/quality', qualitiesRoute);
+app.use('/api/products', productsRoute);
 
 
 export default app;
+ 

@@ -1,5 +1,5 @@
 import express from 'express';
-import Product from '../models/ProductModel'; // Adjust the path as needed
+import Product from '../models/ProductModel.js'; // Adjust the path as needed
 
 const router = express.Router();
 
