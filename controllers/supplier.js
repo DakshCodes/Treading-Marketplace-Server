@@ -69,7 +69,7 @@ router.delete("/delete-supplier/:id", async (req, res, next) => {
 // Update supplier
 router.put("/update-supplier/:id", async (req, res, next) => {
     try {
-        const supplierId = req.params.id;
+        const suppilerId = req.params.id;
        
 
         const supplier = await Supplier.findByIdAndUpdate(supplierId,req.body);

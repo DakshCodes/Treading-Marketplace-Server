@@ -1,12 +1,12 @@
 import express from "express";
-import Category from "../models/Category.js";
+import Quality from "../models/Quality.js";
 
 const router = express.Router();
 
 // Create quality
 router.post("/create-quality", async (req, res, next) => {
     try {
-        const qualityDoc = await Category.create(req.body);
+        const qualityDoc = await Quality.create(req.body);
 
         res.status(201).json({
             message: "Create Successfully",
@@ -25,7 +25,7 @@ router.post("/create-quality", async (req, res, next) => {
 // Get all qualitys
 router.get("/get-all-quality", async (req, res, next) => {
     try {
-        const qualities = await Category.find({});
+        const qualities = await Quality.find({});
 
         res.status(200).json({
             success: true,
@@ -44,7 +44,7 @@ router.delete("/delete-quality/:id", async (req, res, next) => {
     try {
         const qualityId = req.params.id;
 
-        const quality = await Category.findByIdAndDelete(qualityId);
+        const quality = await Quality.findByIdAndDelete(qualityId);
 
         if (!quality) {
             return res.status(404).json({
@@ -72,7 +72,7 @@ router.put("/update-quality/:id", async (req, res, next) => {
         const qualityId = req.params.id;
 
 
-        const quality = await Category.findByIdAndUpdate(qualityId, req.body);
+        const quality = await Quality.findByIdAndUpdate(qualityId, req.body);
 
         if (!quality) {
             return res.status(404).json({
