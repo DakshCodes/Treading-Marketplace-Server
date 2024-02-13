@@ -5,6 +5,10 @@ import supplierRoute from './controllers/supplier.js';
 import categoriesRoute from './controllers/categories.js';
 import qualitiesRoute from './controllers/qualties.js';
 import productsRoute from './controllers/productsRoute.js';
+import designRoute from './controllers/designs.js';
+import finishtypeROute from './controllers/finishtype.js';
+import feeltypeROute from './controllers/feeltype.js';
+import weaveROute from './controllers/weave.js';
 
 
 const app = express();
@@ -16,7 +20,10 @@ app.use('/api/supplier', supplierRoute);
 app.use('/api/category', categoriesRoute);
 app.use('/api/quality', qualitiesRoute);
 app.use('/api/products', productsRoute);
+app.use('/api/design', designRoute);
+app.use('/api/finishtype', finishtypeROute);
+app.use('/api/feeltype', feeltypeROute);
+app.use('/api/weave', weaveROute);
 
 
 export default app;
- 
