@@ -3,12 +3,11 @@ import mongoose from 'mongoose';
 const { model, models, Schema } = mongoose;
 
 const productSchema = new Schema({
-    name: {
+    supplierName: {
         type: String,
         required: true
     },
-
-    category: {
+    productName: {
         type: String,
         required: true
     },
