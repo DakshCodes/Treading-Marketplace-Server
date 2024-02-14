@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const { model, models, Schema } = mongoose;
 
 
-const FinishTypeSchema = new Schema({
+const WidthSchema = new Schema({
     name: {
         type: String,
         required: [true, "please provide name"]
@@ -23,6 +23,6 @@ const FinishTypeSchema = new Schema({
 
 })
 
-const FinishType = models?.FinishTypes || model('finishtypes', FinishTypeSchema);
+const Width = models?.Widths || model('widths', WidthSchema);
 
-export default FinishType; // Change this line to use default export
+export default Width; // Change this line to use default export

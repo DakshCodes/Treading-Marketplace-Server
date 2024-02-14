@@ -9,6 +9,7 @@ import designRoute from './controllers/designs.js';
 import finishtypeROute from './controllers/finishtype.js';
 import feeltypeROute from './controllers/feeltype.js';
 import weaveROute from './controllers/weave.js';
+import widthRoute from './controllers/width.js';
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/design', designRoute);
 app.use('/api/finishtype', finishtypeROute);
 app.use('/api/feeltype', feeltypeROute);
 app.use('/api/weave', weaveROute);
+app.use('/api/width', widthRoute);
 
 
 export default app;
