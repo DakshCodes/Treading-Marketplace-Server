@@ -10,6 +10,7 @@ import finishtypeROute from './controllers/finishtype.js';
 import feeltypeROute from './controllers/feeltype.js';
 import weaveROute from './controllers/weave.js';
 import widthRoute from './controllers/width.js';
+import userRoute from './routes/userRoute.js';
 
 
 const app = express();
@@ -17,6 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use('/api', userRoute);
 app.use('/api/supplier', supplierRoute);
 app.use('/api/category', categoriesRoute);
 app.use('/api/quality', qualitiesRoute);
