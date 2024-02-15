@@ -13,52 +13,45 @@ const productSchema = new Schema({
     },
 
     quality: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'qualities',
+        
+    },
+
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'categories',
         required: true
     },
 
     design: {
-
-        type: String,
-        required: true
-
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'Design',
-        // required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'designs',
+        
     },
 
-    weight: {
-
-        type: String,
-        required: true
-
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'Weight',
-        // required: true
+    weave: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'weaves',
+        
     },
 
-    remarks: {
-        type: String
+    width: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'widths',
+        
     },
 
     finishtype: {
-
-        type: String,
-        required: true
-
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'FinishType',
-        // required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'finishtypes',
+        
     },
 
     feeltype: {
-
-        type: String,
-        required: true
-
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'FeelType',
-        // required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'feeltypes',
+        
     },
 
 });
