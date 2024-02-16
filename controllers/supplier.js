@@ -69,10 +69,9 @@ router.delete("/delete-supplier/:id", async (req, res, next) => {
 // Update supplier
 router.put("/update-supplier/:id", async (req, res, next) => {
     try {
-        const suppilerId = req.params.id;
-       
+        const supplierId = req.params.id;
 
-        const supplier = await Supplier.findByIdAndUpdate(supplierId,req.body);
+        const supplier = await Supplier.findByIdAndUpdate(supplierId , req.body);
 
         if (!supplier) {
             return res.status(404).json({
