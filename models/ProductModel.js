@@ -4,8 +4,8 @@ const { model, models, Schema } = mongoose;
 
 const productSchema = new Schema({
     supplierName: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "suppliers"
     },
     productName: {
         type: String,
@@ -15,7 +15,6 @@ const productSchema = new Schema({
     quality: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'qualities',
-        
     },
 
     category: {
