@@ -24,7 +24,16 @@ router.post('/create-product', async (req, res) => {
 // Get all products
 router.get('/get-all-products', async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find()
+            .populate('quality') 
+            .populate('supplierName') 
+            .populate('category') 
+            .populate('design')   
+            .populate('weave')    
+            .populate('width')    
+            .populate('finishtype') 
+            .populate('feeltype');
+
         res.status(200).json({
             success: true,
             message: 'Products retrieved successfully',
