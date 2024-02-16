@@ -71,7 +71,9 @@ router.put("/update-supplier/:id", async (req, res, next) => {
     try {
         const supplierId = req.params.id;
 
-        const supplier = await Supplier.findByIdAndUpdate(supplierId , req.body);
+        const supplier = await Supplier.findByIdAndUpdate(supplierId , req.body , {new : true});
+
+        console.log('Updated Supplier:', supplier);
 
         if (!supplier) {
             return res.status(404).json({
