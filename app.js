@@ -10,6 +10,7 @@ import finishtypeROute from './controllers/finishtype.js';
 import feeltypeROute from './controllers/feeltype.js';
 import weaveROute from './controllers/weave.js';
 import widthRoute from './controllers/width.js';
+import unitRoute from './controllers/unit.js'
 import userRoute from './routes/userRoute.js';
 
 
@@ -28,6 +29,7 @@ app.use('/api/finishtype', finishtypeROute);
 app.use('/api/feeltype', feeltypeROute);
 app.use('/api/weave', weaveROute);
 app.use('/api/width', widthRoute);
+app.use('/api/unit', unitRoute);
 
 
 export default app;
