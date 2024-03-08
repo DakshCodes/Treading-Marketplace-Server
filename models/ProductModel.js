@@ -53,6 +53,11 @@ const productSchema = new Schema({
         
     },
 
+    pricePerPiece: {
+        type: Number,
+        required: true
+    },
+
 });
 
 const Product = models?.Product || model('Product', productSchema);
