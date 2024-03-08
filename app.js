@@ -13,6 +13,7 @@ import widthRoute from './controllers/width.js';
 import unitRoute from './controllers/unit.js'
 import cutRoute from './controllers/cut.js'
 import userRoute from './routes/userRoute.js';
+import challanRote from './controllers/challan.js'
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.use('/api/weave', weaveROute);
 app.use('/api/width', widthRoute);
 app.use('/api/unit', unitRoute);
 app.use('/api/cut', cutRoute);
+app.use('/api/challan', challanRote);
 
 
 export default app;
