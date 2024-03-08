@@ -1,5 +1,5 @@
 import express from "express";
-import Challan from "../models/challanModel.js";
+import Challan from "../models/ChallanModel.js";
 
 const router = express.Router();
 
