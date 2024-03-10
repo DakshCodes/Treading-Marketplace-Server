@@ -30,13 +30,18 @@ const ProductSchema = new Schema({
 });
 
 const ChallanSchema = new Schema({
-    name: {
-        type: String,
-    },
     products: [ProductSchema],
     supplier: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "suppliers",
+    },
+    customer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "customer",
+    },
+    challanNo: {
+        type: String,
+        required: true,
     },
     type: {
         type: String,
