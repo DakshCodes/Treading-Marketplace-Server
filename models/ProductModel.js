@@ -53,9 +53,16 @@ const productSchema = new Schema({
         
     },
 
-    pricePerPiece: {
-        type: Number,
-        required: true
+    pricePerUnit: {
+        magnitude : {
+            type : Number,
+            required : true
+        },
+        unit : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "unit",
+            required : true
+        }
     },
 
 });
