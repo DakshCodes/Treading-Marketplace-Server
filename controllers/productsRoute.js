@@ -1,6 +1,8 @@
 import express from 'express';
 import Product from '../models/ProductModel.js'; // Adjust the path as needed
-
+import cloudinary from "../configs/cloudinaryConfig.js";
+import upload from '../middlewares/multer.js';
+ 
 const router = express.Router();
 
 // Create a new product
@@ -21,17 +23,38 @@ router.post('/create-product', async (req, res) => {
     }
 });
 
+// Upload img of a new product color chart
+router.post('/upload-product-chart', upload.single('color-chart-product'), async (req, res) => {
+    cloudinary.uploader.upload(req.file.path, {
+        folder: "color-chart-product",
+    }, function (err, result) {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: "Error"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Your Image Uploaded Successfully!",
+            url: result.secure_url
+        })
+    })
+});
+
 // Get all products
 router.get('/get-all-products', async (req, res) => {
     try {
         const products = await Product.find()
-            .populate('quality') 
-            .populate('supplierName') 
-            .populate('category') 
-            .populate('design')   
-            .populate('weave')    
-            .populate('width')    
-            .populate('finishtype') 
+            .populate('quality')
+            .populate('supplierName')
+            .populate('category')
+            .populate('design')
+            .populate('weave')
+            .populate('width')
+            .populate('finishtype')
             .populate('feeltype');
 
         res.status(200).json({
