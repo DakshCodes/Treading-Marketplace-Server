@@ -15,6 +15,10 @@ const ProductSchema = new Schema({
         type: String,
         required: true,
     },
+    unit: {
+        type: String,
+        required: true,
+    },
     total: {
         type: Number,
         required: true,
@@ -40,6 +44,10 @@ const ChallanSchema = new Schema({
         ref: "customer",
     },
     challanNo: {
+        type: String,
+        required: true,
+    },
+    remarkDesc: {
         type: String,
         required: true,
     },
