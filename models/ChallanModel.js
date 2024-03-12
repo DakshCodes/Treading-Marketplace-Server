@@ -16,8 +16,8 @@ const ProductSchema = new Schema({
         required: true,
     },
     unit: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Unit",
     },
     total: {
         type: Number,
@@ -48,6 +48,10 @@ const ChallanSchema = new Schema({
         required: true,
     },
     remarkDesc: {
+        type: String,
+        required: true,
+    },
+    totalBill: {
         type: String,
         required: true,
     },
