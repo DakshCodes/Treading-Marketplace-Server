@@ -15,6 +15,7 @@ const productSchema = new Schema({
     quality: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'qualities',
+        default : null,
     },
 
     category: {
@@ -26,30 +27,35 @@ const productSchema = new Schema({
     design: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'designs',
+        default : null,
         
     },
 
     weave: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'weaves',
+        default : null,
         
     },
 
     width: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'widths',
+        default : null,
         
     },
 
     finishtype: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'finishtypes',
+        default : null,
         
     },
 
     feeltype: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'feeltypes',
+        default : null,
         
     },
 

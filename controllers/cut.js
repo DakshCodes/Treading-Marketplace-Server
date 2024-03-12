@@ -26,7 +26,7 @@ router.post("/create-cut", async (req, res, next) => {
 // Get all widths
 router.get("/get-all-cuts", async (req, res, next) => {
     try {
-        const cuts = await Cut.find({});
+        const cuts = await Cut.find({}).populate('ref');;
 
         res.status(200).json({
             success: true,

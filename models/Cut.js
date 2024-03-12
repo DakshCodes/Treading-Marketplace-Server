@@ -21,10 +21,6 @@ const CutSchema = new Schema({
         ref: 'categories' // The model this ObjectId refers to
     },
    
-    verified: {
-        type: Boolean,
-        default: false,
-    },
     isNameNumerical: {
         type: Boolean,
         default: false,
