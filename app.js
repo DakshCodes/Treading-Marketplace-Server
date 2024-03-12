@@ -14,6 +14,7 @@ import unitRoute from './controllers/unit.js'
 import cutRoute from './controllers/cut.js'
 import userRoute from './routes/userRoute.js';
 import challanRote from './controllers/challan.js'
+import customerRoute from './controllers/customer.js'
 
 
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/width', widthRoute);
 app.use('/api/unit', unitRoute);
 app.use('/api/cut', cutRoute);
 app.use('/api/challan', challanRote);
+app.use('/api/customer', customerRoute);
 
 
 export default app;

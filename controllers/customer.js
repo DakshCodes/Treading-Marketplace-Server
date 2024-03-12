@@ -1,22 +1,23 @@
 import express from "express";
-import Cut from "../models/Cut.js";
+import Customer from "../models/Customer.js";
+
 
 const router = express.Router();
 
 // Create width
-router.post("/create-cut", async (req, res, next) => {
+router.post("/create-customer", async (req, res, next) => {
     try {
-        const cutDoc = new Cut(req.body);
-        await cutDoc.save();
+        const customerDoc = new Customer(req.body);
+        await customerDoc.save();
         console.log(req.body, 'hiiiiiiiiiiiiiiiii')
         res.status(201).json({
             message: "Create Successfully",
             success: true,
-            cutDoc,
+            customerDoc,
         });
     } catch (error) {
         res.status(404).json({
-            message: "cut name not be empty",
+            message: "customer name not be empty",
             success: false,
             error: error.message,
         });
@@ -25,13 +26,13 @@ router.post("/create-cut", async (req, res, next) => {
 
 
 // Get all widths
-router.get("/get-all-cuts", async (req, res, next) => {
+router.get("/get-all-customers", async (req, res, next) => {
     try {
-        const cuts = await Cut.find({});
+        const customers = await Customer.find({});
 
         res.status(200).json({
             success: true,
-            cuts,
+            customers,
         });
     } catch (error) {
         return res.status(400).json({
@@ -42,24 +43,24 @@ router.get("/get-all-cuts", async (req, res, next) => {
 });
 
 // Delete width
-router.delete("/delete-cut/:id", async (req, res, next) => {
+router.delete("/delete-customer/:id", async (req, res, next) => {
    
     try {
-        const cutId = req.params.id;
-        console.log(cutId)
+        const customerId = req.params.id;
+        console.log(customerId)
      
-        const cut = await Cut.findByIdAndDelete(cutId);
-        if (!cut) {
+        const customer = await Customer.findByIdAndDelete(customerId);
+        if (!customer) {
             return res.status(404).json({
                 success: false,
-                error: "cut not found with this id",
+                error: "customer not found with this id",
             });
         }
 
         res.status(200).json({
             success: true,
-            message: "cut deleted successfully!",
-            cut,
+            message: "customer deleted successfully!",
+            customer,
         });
     } catch (error) {
         return res.status(400).json({
@@ -70,27 +71,27 @@ router.delete("/delete-cut/:id", async (req, res, next) => {
 });
 
 // Update width
-router.put("/update-cut/:id", async (req, res, next) => {
+router.put("/update-customer/:id", async (req, res, next) => {
     try {
-        const cutId = req.params.id;
+        const customerId = req.params.id;
 
-        const cut = await Cut.findByIdAndUpdate(
-            cutId,
+        const customer = await Customer.findByIdAndUpdate(
+            customerId,
             req.body,
             { new: true } // Add this option to return the updated document
         );
 
-        if (!cut) {
+        if (!customer) {
             return res.status(404).json({
                 success: false,
-                error: "cutname not found with this id",
+                error: "customername not found with this id",
             });
         }
 
         res.status(200).json({
             success: true,
-            message: "cut updated successfully!",
-            cut,
+            message: "customer updated successfully!",
+            customer,
         });
     } catch (error) {
         return res.status(400).json({

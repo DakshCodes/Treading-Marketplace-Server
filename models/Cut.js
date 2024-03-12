@@ -6,7 +6,7 @@ const { model, models, Schema } = mongoose;
 const CutSchema = new Schema({
     name: {
         type: String,
-        required: [true, "unit not be empty"],
+        required: [true, "cut not be empty"],
         minlength : [1,"mininum 1 character required"],
         validate: {
             validator:(value)=> {
