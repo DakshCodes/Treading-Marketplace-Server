@@ -72,7 +72,7 @@ router.put("/update-design/:id", async (req, res, next) => {
         const designId = req.params.id;
 
 
-        const design = await Design.findByIdAndUpdate(designId, req.body);
+        const design = await Design.findByIdAndUpdate(designId, req.body,{ new: true });
 
         if (!design) {
             return res.status(404).json({

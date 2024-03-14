@@ -72,7 +72,7 @@ router.put("/update-quality/:id", async (req, res, next) => {
         const qualityId = req.params.id;
 
 
-        const quality = await Quality.findByIdAndUpdate(qualityId, req.body);
+        const quality = await Quality.findByIdAndUpdate(qualityId, req.body,{ new: true });
 
         if (!quality) {
             return res.status(404).json({

@@ -72,7 +72,7 @@ router.put("/update-feeltype/:id", async (req, res, next) => {
         const feeltypeId = req.params.id;
 
 
-        const feeltype = await FeelType.findByIdAndUpdate(feeltypeId, req.body);
+        const feeltype = await FeelType.findByIdAndUpdate(feeltypeId, req.body,{ new: true });
 
         if (!feeltype) {
             return res.status(404).json({

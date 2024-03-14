@@ -68,11 +68,11 @@ router.delete("/delete-width/:id", async (req, res, next) => {
 
 // Update width
 router.put("/update-width/:id", async (req, res, next) => {
+    console.log('calleddddddddddddddddddddddddddddddddd')
     try {
         const widthId = req.params.id;
 
-
-        const width = await Width.findByIdAndUpdate(widthId, req.body);
+        const width = await Width.findByIdAndUpdate(widthId, req.body,{ new: true });
 
         if (!width) {
             return res.status(404).json({
@@ -80,6 +80,7 @@ router.put("/update-width/:id", async (req, res, next) => {
                 error: "width not found with this id",
             });
         }
+        console.log('Updated width:', width); // Log the updated width
         res.status(200).json({
             success: true,
             message: "width updated successfully!",

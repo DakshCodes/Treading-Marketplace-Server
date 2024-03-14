@@ -70,21 +70,24 @@ router.delete("/delete-weave/:id", async (req, res, next) => {
 router.put("/update-weave/:id", async (req, res, next) => {
     try {
         const weaveId = req.params.id;
-
-
-        const weave = await Weave.findByIdAndUpdate(weaveId, req.body);
-
+        const weave = await Weave.findByIdAndUpdate(
+            weaveId,
+            req.body,
+            { new: true } // Add this option to return the updated document
+        );
+     
         if (!weave) {
             return res.status(404).json({
                 success: false,
-                error: "weave not found with this id",
+                error: "weave name not found with this id",
             });
         }
-        res.status(200).json({
+
+        res.json({
             success: true,
             message: "weave updated successfully!",
             weave,
-        });
+        }).status(200);
     } catch (error) {
         return res.status(400).json({
             success: false,

@@ -73,7 +73,7 @@ router.delete("/delete-cut/:id", async (req, res, next) => {
 router.put("/update-cut/:id", async (req, res, next) => {
     try {
         const cutId = req.params.id;
-
+        
         const cut = await Cut.findByIdAndUpdate(
             cutId,
             req.body,

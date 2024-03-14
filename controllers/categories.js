@@ -72,7 +72,7 @@ router.put("/update-category/:id", async (req, res, next) => {
         const categoryId = req.params.id;
 
 
-        const category = await Category.findByIdAndUpdate(categoryId, req.body);
+        const category = await Category.findByIdAndUpdate(categoryId, req.body,{ new: true });
 
         if (!category) {
             return res.status(404).json({

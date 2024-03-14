@@ -72,7 +72,7 @@ router.put("/update-finishtype/:id", async (req, res, next) => {
         const finishtypeId = req.params.id;
 
 
-        const finishtype = await FinishType.findByIdAndUpdate(finishtypeId, req.body);
+        const finishtype = await FinishType.findByIdAndUpdate(finishtypeId, req.body,{ new: true });
 
         if (!finishtype) {
             return res.status(404).json({
