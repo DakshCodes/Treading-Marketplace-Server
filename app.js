@@ -15,6 +15,8 @@ import cutRoute from './controllers/cut.js'
 import userRoute from './routes/userRoute.js';
 import challanRote from './controllers/challan.js'
 import customerRoute from './controllers/customer.js'
+import transportRoute from './controllers/transport.js'
+
 
 
 const app = express();
@@ -36,6 +38,7 @@ app.use('/api/unit', unitRoute);
 app.use('/api/cut', cutRoute);
 app.use('/api/challan', challanRote);
 app.use('/api/customer', customerRoute);
+app.use('/api/transport',transportRoute );
 
 
 export default app;
