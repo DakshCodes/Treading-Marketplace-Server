@@ -11,18 +11,26 @@ const ProductSchema = new Schema({
         type: String,
         required: true,
     },
-    qty: {
+    remarkDesc: {
+        type: String,
+    },
+    qtyPcs: {
         type: String,
         required: true,
     },
-    unit: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Unit",
-    },
-    total: {
+    qtyMtr: {
         type: Number,
         required: true,
     },
+    unit: {
+        type: String,
+        required: true,
+    },
+    challanChartImages: [{
+        src: {
+            type: String,
+        }
+    }],
     price: {
         type: Number,
         required: true,
@@ -47,17 +55,17 @@ const ChallanSchema = new Schema({
         type: String,
         required: true,
     },
-    remarkDesc: {
-        type: String,
-        required: true,
-    },
     totalBill: {
         type: String,
         required: true,
     },
+    challanDate: {
+        type: Date,
+        required: true,
+    },
     type: {
         type: String,
-        enum: ["supplier", "customer"], // Assuming there are only two types of Challans
+        enum: ["supplier", "customer"],
     },
     verified: {
         type: Boolean,

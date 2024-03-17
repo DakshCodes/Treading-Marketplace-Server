@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/create-challan", async (req, res, next) => {
     try {
 
-        console.log(req.body)
+        console.log(req.body,'challan')
         const challanDoc = await Challan.create(req.body);
 
         res.status(201).json({

@@ -43,6 +43,26 @@ router.post('/upload-product-chart', upload.single('color-chart-product'), async
         })
     })
 });
+// Upload img of a new product color chart
+router.post('/upload-challan-chart', upload.single('color-chart-challan'), async (req, res) => {
+    cloudinary.uploader.upload(req.file.path, {
+        folder: "color-chart-challan",
+    }, function (err, result) {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: "Error"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Your Image Uploaded Successfully!",
+            url: result.secure_url
+        })
+    })
+});
 
 // Get all products
 router.get('/get-all-products', async (req, res) => {
