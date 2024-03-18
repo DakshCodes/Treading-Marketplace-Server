@@ -47,15 +47,15 @@ router.post('/upload-product-chart', upload.single('color-chart-product'), async
 // Get all products
 router.get('/get-all-products', async (req, res) => {
     try {
-        const products = await Product.find()
-            .populate('quality')
-            .populate('supplierName')
-            .populate('category')
-            .populate('design')
-            .populate('weave')
-            .populate('width')
-            .populate('finishtype')
-            .populate('feeltype');
+        const products = await Product.find().sort({createdAt : -1});
+            // .populate('quality')
+            // .populate('supplierName')
+            // .populate('category')
+            // .populate('design')
+            // .populate('weave')
+            // .populate('width')
+            // .populate('finishtype')
+            // .populate('feeltype');
 
         res.status(200).json({
             success: true,
