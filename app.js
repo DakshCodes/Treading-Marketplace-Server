@@ -10,7 +10,7 @@ import productsRoute from './controllers/productsRoute.js';
 // import feeltypeROute from './controllers/feeltype.js';
 // import weaveROute from './controllers/weave.js';
 // import widthRoute from './controllers/width.js';
-// import unitRoute from './controllers/unit.js'
+import unitRoute from './controllers/unit.js'
 // import cutRoute from './controllers/cut.js'
 import userRoute from './routes/userRoute.js';
 import challanRote from './controllers/challan.js'
