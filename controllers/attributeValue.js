@@ -26,7 +26,7 @@ router.post("/create-attributeValue", async (req, res, next) => {
 // Get all attributeValues
 router.get("/get-all-attributeValue", async (req, res, next) => {
     try {
-        const attributeValues = await AttributeValue.find({});
+        const attributeValues = await AttributeValue.find({}).populate('attributeRef');
           console.log(attributeValues,'kkkkkkkk')
         res.json({
             success: true,

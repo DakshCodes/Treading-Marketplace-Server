@@ -7,7 +7,7 @@ const AttributeValueSchema = new Schema({
    
         attributeRef: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Attrubute' // The model this ObjectId refers to
+            ref: 'Attribute' // The model this ObjectId refers to
         },
        valuesCombo : [{
           category : {

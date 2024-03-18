@@ -5,13 +5,13 @@ import supplierRoute from './controllers/supplier.js';
 import categoriesRoute from './controllers/categories.js';
 import qualitiesRoute from './controllers/qualties.js';
 import productsRoute from './controllers/productsRoute.js';
-import designRoute from './controllers/designs.js';
-import finishtypeROute from './controllers/finishtype.js';
-import feeltypeROute from './controllers/feeltype.js';
-import weaveROute from './controllers/weave.js';
-import widthRoute from './controllers/width.js';
+// import designRoute from './controllers/designs.js';
+// import finishtypeROute from './controllers/finishtype.js';
+// import feeltypeROute from './controllers/feeltype.js';
+// import weaveROute from './controllers/weave.js';
+// import widthRoute from './controllers/width.js';
 import unitRoute from './controllers/unit.js'
-import cutRoute from './controllers/cut.js'
+// import cutRoute from './controllers/cut.js'
 import userRoute from './routes/userRoute.js';
 import challanRote from './controllers/challan.js'
 import customerRoute from './controllers/customer.js'
