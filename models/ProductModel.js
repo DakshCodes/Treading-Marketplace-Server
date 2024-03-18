@@ -5,69 +5,54 @@ const { model, models, Schema } = mongoose;
 const productSchema = new Schema({
     supplierName: {
         type: mongoose.Schema.Types.ObjectId,
-        ref : "suppliers"
+        ref: "suppliers"
     },
     productName: {
         type: String,
         required: true
     },
-
-    quality: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'qualities',
-        default : null,
-    },
-
+ 
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'categories',
         required: true
     },
 
-    design: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'designs',
-        default : null,
+    productAttributes: [
+        {
+            attrType : {
+                // type : mongoose.Schema.Types.ObjectId,
+                // required : true,
+                // ref : "attributes"
+                type : String,
+                required : true,
+            },
+            attrValue : {
+                type : String,
+                // required : true
+            },
+        }
         
-    },
+    ],
 
-    weave: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'weaves',
-        default : null,
-        
-    },
-
-    width: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'widths',
-        default : null,
-        
-    },
-
-    finishtype: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'finishtypes',
-        default : null,
-        
-    },
-
-    feeltype: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'feeltypes',
-        default : null,
-        
-    },
+    productColorChartData : [
+        {
+            src : {
+                type : String,
+                required : true,
+            }
+        }
+    ],
 
     pricePerUnit: {
-        magnitude : {
-            type : Number,
-            required : true
+        magnitude: {
+            type: Number,
+            required: true
         },
-        unit : {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "unit",
-            required : true
+        unit: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "unit",
+            required: true
         }
     },
 
