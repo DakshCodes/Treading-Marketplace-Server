@@ -36,7 +36,7 @@ app.use('/api/products', productsRoute);
 // app.use('/api/feeltype', feeltypeROute);
 // app.use('/api/weave', weaveROute);
 // app.use('/api/width', widthRoute);
-// app.use('/api/unit', unitRoute);
+app.use('/api/unit', unitRoute);
 // app.use('/api/cut', cutRoute);
 app.use('/api/challan', challanRote);
 app.use('/api/customer', customerRoute);
