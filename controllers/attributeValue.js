@@ -6,6 +6,7 @@ const router = express.Router();
 // Create attributeValue
 router.post("/create-attributeValue", async (req, res, next) => {
     try {
+        console.log(req.body)
         const attributeValueDoc = await AttributeValue.create(req.body);
 
         res.status(201).json({

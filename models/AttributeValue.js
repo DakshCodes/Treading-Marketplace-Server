@@ -16,8 +16,13 @@ const AttributeValueSchema = new Schema({
           },
           attributeValue : {
             type : String,
+          },
+          isNameNumerical: {
+            type: Boolean,
+            default: false,
           }
 }],
+
     verified: {
         type: Boolean,
         default: false,
