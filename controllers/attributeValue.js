@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/create-attributeValue", async (req, res, next) => {
     try {
         console.log(req.body)
-        const attributeValueDoc = await AttributeValue.create(req.body);
+        const attributeValueDoc = await AttributeValue.create(req.body).populate('attributeRef');;
 
         res.status(201).json({
             message: "Create Successfully",
@@ -27,7 +27,22 @@ router.post("/create-attributeValue", async (req, res, next) => {
 router.get("/get-all-attributeValue", async (req, res, next) => {
     try {
         const attributeValues = await AttributeValue.find({}).populate('attributeRef');
-          console.log(attributeValues,'kkkkkkkk')
+        
+        res.json({
+            success: true,
+            attributeValues,
+        }).status(200);
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+router.get("/get-all-attributeValue/withoutpopulate", async (req, res, next) => {
+    try {
+        const attributeValues = await AttributeValue.find({})
+        
         res.json({
             success: true,
             attributeValues,

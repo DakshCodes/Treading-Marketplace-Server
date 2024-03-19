@@ -49,7 +49,7 @@ export const login = async (req, res) => {
         else {
             throw new Error("user not found");
         }
-        const token = jwt.sign({ userId: user._id, email: user.email }, `${process.env.SECRET}`, { expiresIn: "2h" });
+        const token = jwt.sign({ userId: user._id, email: user.email }, `${process.env.SECRET}`, { expiresIn: "24h" });
 
         res.status(200).json({
             success: true,
