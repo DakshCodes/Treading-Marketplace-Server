@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/create-attributeValue", async (req, res, next) => {
     try {
         console.log(req.body)
-        const attributeValueDoc = await AttributeValue.create(req.body).populate('attributeRef');;
+        const attributeValueDoc = await AttributeValue.create(req.body)
 
         res.status(201).json({
             message: "Create Successfully",
