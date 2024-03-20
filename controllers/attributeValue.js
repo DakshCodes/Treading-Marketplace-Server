@@ -39,22 +39,6 @@ router.get("/get-all-attributeValue", async (req, res, next) => {
         });
     }
 });
-router.get("/get-all-attributeValue/withoutpopulate", async (req, res, next) => {
-    try {
-        const attributeValues = await AttributeValue.find({})
-        
-        res.json({
-            success: true,
-            attributeValues,
-        }).status(200);
-    } catch (error) {
-        return res.status(400).json({
-            success: false,
-            error: error.message,
-        });
-    }
-});
-
 // Delete attributeValue
 router.delete("/delete-attributeValue/:id", async (req, res, next) => {
     try {
