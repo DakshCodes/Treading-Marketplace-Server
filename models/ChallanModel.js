@@ -65,7 +65,7 @@ const ChallanSchema = new Schema({
     },
     type: {
         type: String,
-        enum: ["supplier", "customer"],
+        enum: ["supplier", "product"],
     },
     verified: {
         type: Boolean,
