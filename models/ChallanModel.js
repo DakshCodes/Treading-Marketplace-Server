@@ -71,6 +71,10 @@ const ChallanSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    overallremarks : {
+        type : String,
+        required : true,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
