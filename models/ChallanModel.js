@@ -49,7 +49,7 @@ const ChallanSchema = new Schema({
     },
     customer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "customer",
+        ref: "Customer",
     },
     challanNo: {
         type: String,

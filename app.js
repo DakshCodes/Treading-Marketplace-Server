@@ -19,6 +19,7 @@ import customerRoute from './controllers/customer.js'
 import transportRoute from './controllers/transport.js'
 import attributeRoute from './controllers/attribute.js'
 import attributevalueRoute from './controllers/attributeValue.js'
+import invoiceRoute from './controllers/invoice.js'
 
 
 
@@ -45,6 +46,7 @@ app.use('/api/transport',transportRoute );
 app.use('/api/attribute', attributeRoute);
 app.use('/api/attributeValue',attributevalueRoute);
 app.use('/api/quickchallan', quickchallanRoute);
+app.use('/api/invoice', invoiceRoute);
 
 
 

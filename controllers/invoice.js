@@ -1,19 +1,19 @@
 import express from "express";
-import Challan from "../models/ChallanModel.js";
+import Invoice from "../models/InvoiceModel.js";
 
 const router = express.Router();
 
-// Create challan
+// Create invoice
 router.post("/create-invoice", async (req, res, next) => {
     try {
 
-        console.log(req.body,'challan')
-        const challanDoc = await Challan.create(req.body);
+        console.log(req.body,'invoice')
+        const invoiceDoc = await Invoice.create(req.body);
 
         res.status(201).json({
             message: "Created Successfully",
             success: true,
-            challanDoc,
+            invoiceDoc: invoiceDoc,
         });
     } catch (error) {
         return res.status(400).json({
@@ -23,14 +23,14 @@ router.post("/create-invoice", async (req, res, next) => {
     }
 });
 
-// Get all challans
-router.get("/get-all-challan", async (req, res, next) => {
+// Get all invoices
+router.get("/get-all-invoice", async (req, res, next) => {
     try {
-        const challans = await Challan.find({}).populate('supplier').populate('customer');
+        const invoices = await Invoice.find({});
 
         res.status(200).json({
             success: true,
-            challans,
+            invoices,
         });
     } catch (error) {
         return res.status(400).json({
@@ -40,24 +40,24 @@ router.get("/get-all-challan", async (req, res, next) => {
     }
 });
 
-// Delete challan
-router.delete("/delete-challan/:id", async (req, res, next) => {
+// Delete invoice
+router.delete("/delete-invoice/:id", async (req, res, next) => {
     try {
-        const challanId = req.params.id;
+        const invoiceId = req.params.id;
 
-        const challan = await Challan.findByIdAndDelete(challanId);
+        const invoice = await Invoice.findByIdAndDelete(invoiceId);
 
-        if (!challan) {
+        if (!invoice) {
             return res.status(404).json({
                 success: false,
-                error: "Challan not found with this id",
+                error: "invoice not found with this id",
             });
         }
 
         res.status(200).json({
             success: true,
-            message: "Challan deleted successfully!",
-            challan,
+            message: "invoice deleted successfully!",
+            invoice,
         });
     } catch (error) {
         return res.status(400).json({
@@ -67,24 +67,24 @@ router.delete("/delete-challan/:id", async (req, res, next) => {
     }
 });
 
-// Update challan
-router.put("/update-challan/:id", async (req, res, next) => {
+// Update invoice
+router.put("/update-invoice/:id", async (req, res, next) => {
     try {
-        const challanId = req.params.id;
+        const invoiceId = req.params.id;
 
-        const challan = await Challan.findByIdAndUpdate(challanId, req.body, { new: true });
+        const invoice = await Invoice.findByIdAndUpdate(invoiceId, req.body, { new: true });
 
-        if (!challan) {
+        if (!invoice) {
             return res.status(404).json({
                 success: false,
-                error: "Challan not found with this id",
+                error: "invoice not found with this id",
             });
         }
 
         res.status(200).json({
             success: true,
-            message: "Challan updated successfully!",
-            challan,
+            message: "invoice updated successfully!",
+            invoice,
         });
     } catch (error) {
         return res.status(400).json({
