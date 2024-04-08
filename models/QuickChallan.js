@@ -36,7 +36,7 @@ const QuickChallanSchema = new Schema({
     },
     customer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "customer",
+        ref: "Customer",
     },
     quickchallanNo: {
         type: String,
