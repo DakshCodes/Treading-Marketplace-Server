@@ -14,10 +14,12 @@ import unitRoute from './controllers/unit.js'
 import cutRoute from './controllers/cut.js'
 import userRoute from './routes/userRoute.js';
 import challanRote from './controllers/challan.js'
+import quickchallanRoute from './controllers/quickChallan.js'
 import customerRoute from './controllers/customer.js'
 import transportRoute from './controllers/transport.js'
 import attributeRoute from './controllers/attribute.js'
 import attributevalueRoute from './controllers/attributeValue.js'
+import invoiceRoute from './controllers/invoice.js'
 
 
 
@@ -43,6 +45,9 @@ app.use('/api/customer', customerRoute);
 app.use('/api/transport',transportRoute );
 app.use('/api/attribute', attributeRoute);
 app.use('/api/attributeValue',attributevalueRoute);
+app.use('/api/quickchallan', quickchallanRoute);
+app.use('/api/invoice', invoiceRoute);
+
 
 
 export default app;

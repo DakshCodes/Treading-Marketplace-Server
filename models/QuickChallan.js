@@ -14,34 +14,21 @@ const ProductSchema = new Schema({
     remarkDesc: {
         type: String,
     },
-    qtyPcs: {
+    bales: {
         type: String,
-        required: true,
-    },
-    qtyMtr: {
-        type: Number,
         required: true,
     },
     unit: {
         type: String,
         required: true,
     },
-    challanChartImages: [{
-        src: {
-            type: String,
-        }
-    }],
     price: {
-        type: Number,
-        required: true,
-    },
-    overall: {
         type: Number,
         required: true,
     },
 });
 
-const ChallanSchema = new Schema({
+const QuickChallanSchema = new Schema({
     products: [ProductSchema],
     supplier: {
         type: mongoose.Schema.Types.ObjectId,
@@ -51,7 +38,7 @@ const ChallanSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Customer",
     },
-    challanNo: {
+    quickchallanNo: {
         type: String,
         required: true,
     },
@@ -59,7 +46,7 @@ const ChallanSchema = new Schema({
         type: String,
         required: true,
     },
-    challanDate: {
+    quickchallanDate: {
         type: Date,
         required: true,
     },
@@ -73,6 +60,7 @@ const ChallanSchema = new Schema({
     },
     overallremarks : {
         type : String,
+        required : true,
     },
     createdAt: {
         type: Date,
@@ -80,6 +68,6 @@ const ChallanSchema = new Schema({
     },
 });
 
-const Challan = models?.Challan || model('Challan', ChallanSchema);
+const QuickChallan = models?.QuickChallan || model('QuickChallan', QuickChallanSchema);
 
-export default Challan;
+export default QuickChallan;
