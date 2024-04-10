@@ -4,7 +4,7 @@ import Challan from "../models/ChallanModel.js";
 const router = express.Router();
 
 // Create challan
-router.post("/create-invoice", async (req, res, next) => {
+router.post("/create-challan", async (req, res, next) => {
     try {
 
         console.log(req.body,'challan')
