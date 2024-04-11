@@ -13,7 +13,7 @@ router.post("/create-invoice", async (req, res, next) => {
         res.status(201).json({
             message: "Created Successfully",
             success: true,
-            invoiceDoc: invoiceDoc,
+            invoiceDoc,
         });
     } catch (error) {
         return res.status(400).json({

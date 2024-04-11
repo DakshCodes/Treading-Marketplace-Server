@@ -12,9 +12,10 @@ const InvoiceSchema = new Schema({
 
     products: [
         {
-            name: {
-                type: String,
-                required: true,
+            product :{
+                type: Schema.Types.ObjectId,
+                ref: "Product",
+                required: [true, "please provide name"]
             },
             received: {
                 type: Number,
@@ -28,7 +29,7 @@ const InvoiceSchema = new Schema({
 
             price: {
                 type: Number,
-                required: true,
+               
             },
             overall: {
                 type: Number,
