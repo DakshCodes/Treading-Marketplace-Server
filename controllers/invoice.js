@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/create-invoice", async (req, res, next) => {
     try {
 
-        console.log(req.body,'invoice')
+        console.log(req.body, 'invoice')
         const invoiceDoc = await Invoice.create(req.body);
 
         res.status(201).json({
@@ -23,10 +23,47 @@ router.post("/create-invoice", async (req, res, next) => {
     }
 });
 
+router.get("/get-invoice/:id", async (req, res, next) => {
+    try {
+        const invoiceId = req.params.id;
+
+        const invoice = await Invoice.findById(invoiceId).populate({
+            path: 'challanRef',
+            populate: [
+                { path: 'customer' },
+                { path: 'supplier' }
+            ]
+        });
+
+        if (!invoice) {
+            return res.status(404).json({
+                success: false,
+                error: "Invoice not found with this ID",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            invoice,
+        });
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
 // Get all invoices
 router.get("/get-all-invoice", async (req, res, next) => {
     try {
-        const invoices = await Invoice.find({});
+        const invoices = await Invoice.find({}).populate({
+            path: 'challanRef',
+            populate: [
+                { path: 'customer' },
+                { path: 'supplier' }
+            ]  // Populate the customer field within the populated challanRef
+        });;
 
         res.status(200).json({
             success: true,

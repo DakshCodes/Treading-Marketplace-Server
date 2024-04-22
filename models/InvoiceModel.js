@@ -6,7 +6,7 @@ const { model, models, Schema } = mongoose;
 const InvoiceSchema = new Schema({
     challanRef: [{
         type: Schema.Types.ObjectId,
-        ref: "challan",
+        ref: "Challan",
         required: [true, "please provide name"]
  } ],
 
