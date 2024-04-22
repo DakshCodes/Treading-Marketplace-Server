@@ -31,7 +31,7 @@ const ProductSchema = new Schema({
             type: String,
         }
     }],
-    price: {
+    rate: {
         type: Number,
         required: true,
     },

@@ -4,11 +4,11 @@ const { model, models, Schema } = mongoose;
 
 
 const InvoiceSchema = new Schema({
-    challanRef: {
+    challanRef: [{
         type: Schema.Types.ObjectId,
         ref: "challan",
         required: [true, "please provide name"]
-    },
+ } ],
 
     products: [
         {
@@ -16,6 +16,21 @@ const InvoiceSchema = new Schema({
                 type: Schema.Types.ObjectId,
                 ref: "Product",
                 required: [true, "please provide name"]
+            },
+            cut: {
+                type: Schema.Types.ObjectId,
+                ref: "Cut",
+                required: true,
+            },
+            qtyPcs :{
+             type : String || Number,
+            },
+            qtyMtr :{
+             type : String || Number,
+                
+            },
+            bales:{
+             type : String || Number,
             },
             received: {
                 type: Number,
@@ -31,11 +46,19 @@ const InvoiceSchema = new Schema({
                 type: Number,
                
             },
-            overall: {
+            total: {
                 type: Number,
+            },
+            markAsCompleted: {
+                type: Boolean,
+                default : false
             },
         },
     ],
+    markOverallCompleted :{
+        type : Boolean,
+        default : false
+    },
 
     createdAt: {
         type: Date,
