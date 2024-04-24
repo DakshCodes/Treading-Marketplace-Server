@@ -26,7 +26,17 @@ router.post("/create-quickchallan", async (req, res, next) => {
 // Get all quickchallans
 router.get("/get-all-quickchallan", async (req, res, next) => {
     try {
-        const quickchallans = await QuickChallan.find({}).populate('supplier').populate('customer');
+        const quickchallans = await QuickChallan.find({}).populate([
+            { path: 'customer' },
+            { path: 'supplier' },
+            {
+                path: 'products',
+                populate: [
+                    { path: 'product' },
+                    { path: 'cut' }
+                ]
+            }
+        ]);
 
         res.status(200).json({
             success: true,

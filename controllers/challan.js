@@ -26,7 +26,17 @@ router.post("/create-challan", async (req, res, next) => {
 // Get all challans
 router.get("/get-all-challan", async (req, res, next) => {
     try {
-        const challans = await Challan.find({}).populate('supplier').populate('customer');
+        const challans = await Challan.find({}).populate([
+            { path: 'customer' },
+            { path: 'supplier' },
+            {
+                path: 'products',
+                populate: [
+                    { path: 'product' },
+                    { path: 'cut' }
+                ]
+            }
+        ]);
 
         res.status(200).json({
             success: true,

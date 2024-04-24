@@ -4,11 +4,14 @@ const { model, models, Schema } = mongoose;
 
 const ProductSchema = new Schema({
     product: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
         required: true,
+
     },
     cut: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Cut",
         required: true,
     },
     remarkDesc: {

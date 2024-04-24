@@ -13,13 +13,12 @@ const InvoiceSchema = new Schema({
     products: [
         {
             product :{
-                type: Schema.Types.ObjectId,
-                ref: "Product",
+                type: String,
                 required: [true, "please provide name"]
             },
             cut: {
-                type: Schema.Types.ObjectId,
-                ref: "Cut",
+                type: String || Number,
+                
                 required: true,
             },
             qtyPcs :{
