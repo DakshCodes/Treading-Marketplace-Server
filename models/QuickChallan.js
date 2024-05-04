@@ -45,6 +45,11 @@ const QuickChallanSchema = new Schema({
         type: String,
         required: true,
     },
+    challanChartImages: [{
+        src: {
+            type: String,
+        }
+    }],
     totalBill: {
         type: String,
         required: true,
@@ -61,9 +66,9 @@ const QuickChallanSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    overallremarks : {
-        type : String,
-        required : false,
+    overallremarks: {
+        type: String,
+        required: false,
     },
     createdAt: {
         type: Date,

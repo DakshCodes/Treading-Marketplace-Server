@@ -34,6 +34,10 @@ const ProductSchema = new Schema({
             type: String,
         }
     }],
+    isProductDispatchedByInvoice: {
+        type: Boolean,
+        default: false,
+    },
     rate: {
         type: Number,
         required: true,
@@ -74,8 +78,8 @@ const ChallanSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    overallremarks : {
-        type : String,
+    overallremarks: {
+        type: String,
     },
     createdAt: {
         type: Date,

@@ -32,14 +32,7 @@ const productSchema = new Schema({
                 // required : true
             },
         }
-        
     ],
-
-    isProductDispatchedByInvoice : {
-        type : Boolean,
-        default : false,
-    },
-
     productColorChartData : [
         {
             src : {
