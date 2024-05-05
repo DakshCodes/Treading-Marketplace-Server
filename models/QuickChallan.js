@@ -58,6 +58,10 @@ const QuickChallanSchema = new Schema({
         type: Date,
         required: true,
     },
+    challanType : {
+        type: String,
+        default : "quick"
+    },
     type: {
         type: String,
         enum: ["supplier", "product"],
