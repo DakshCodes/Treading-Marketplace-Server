@@ -70,6 +70,10 @@ const ChallanSchema = new Schema({
         type: Date,
         required: true,
     },
+    challanType : {
+        type: String,
+        default : "main"
+    },
     type: {
         type: String,
         enum: ["supplier", "product"],
