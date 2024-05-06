@@ -51,13 +51,7 @@ router.get("/get-invoice/:id", async (req, res, next) => {
 // Get all invoices
 router.get("/get-all-invoice", async (req, res, next) => {
     try {
-        const invoices = await Invoice.find({}).populate({
-            path: 'challanRef',
-            populate: [
-                { path: 'customer' },
-                { path: 'supplier' }
-            ]  // Populate the customer field within the populated challanRef
-        });;
+        const invoices = await Invoice.find({});;
 
         res.status(200).json({
             success: true,

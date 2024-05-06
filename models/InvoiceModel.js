@@ -8,57 +8,84 @@ const InvoiceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Challan",
         required: [true, "please provide name"]
- } ],
-
+    }],
+    supplierRef: [{
+        type: Schema.Types.ObjectId,
+        ref: "suppliers",
+    }],
+    customerRef: [{
+        type: Schema.Types.ObjectId,
+        ref: "Customer",
+    }],
     products: [
         {
-            product :{
+            product: {
                 type: String,
                 required: [true, "please provide name"]
             },
+            id: {
+                type: Schema.Types.ObjectId,
+                ref: "Product",
+            },
+            challanId: {
+                type: Schema.Types.ObjectId,
+                ref: "Challan",
+            },
             cut: {
                 type: String || Number,
-                
                 required: true,
             },
-            qtyPcs :{
-             type : String || Number,
+            unit: {
+                type: String || Number,
             },
-            qtyMtr :{
-             type : String || Number,
-                
+            challanType: {
+                type: String || Number,
             },
-            bales:{
-             type : String || Number,
+            qtyPcs: {
+                type: String || Number,
             },
-            received: {
-                type: Number,
-                required: true,
+            qtyMtr: {
+                type: String || Number,
             },
-
+            bales: {
+                type: String || Number,
+            },
+            received_bales: {
+                type: String || Number,
+            },
+            received_mtr: {
+                type: String || Number,
+            },
+            received_pcs: {
+                type: String || Number,
+            },
             due: {
                 type: Number,
                 default: 0,
             },
-
-            price: {
+            rate: {
                 type: Number,
-               
+
             },
             total: {
                 type: Number,
             },
             markAsCompleted: {
                 type: Boolean,
-                default : false
+                default: false
+            },
+            isBeingDispatchedInInvoice: {
+                type: Boolean,
+                default: false
             },
         },
     ],
-    markOverallCompleted :{
-        type : Boolean,
-        default : false
+    invoiceDate: {
+        type: String,
     },
-
+    invoiceNo: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
