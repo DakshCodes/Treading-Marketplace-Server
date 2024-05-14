@@ -114,7 +114,7 @@ router.put("/update-challan-products/:id", async (req, res, next) => {
         const challanProductUpdated = await Challan.findById(challanId);
 
         
-        challanProductUpdated.products.map(product => {
+        challanProductUpdated?.products.map(product => {
             if (product.product == productId) { 
                 product.isProductDispatchedByInvoice = isProductDispatchedByInvoice;
             }

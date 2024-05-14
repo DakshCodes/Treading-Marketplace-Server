@@ -17,6 +17,10 @@ const ProductSchema = new Schema({
     remarkDesc: {
         type: String,
     },
+    isProductDispatchedByInvoice: {
+        type: Boolean,
+        default: false,
+    },
     bales: {
         type: String,
         required: true,
