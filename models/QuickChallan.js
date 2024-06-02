@@ -54,10 +54,10 @@ const QuickChallanSchema = new Schema({
             type: String,
         }
     }],
-    totalBill: {
-        type: String,
-        required: true,
-    },
+    // totalBill: {
+    //     type: String,
+    //     required: true,
+    // },
     quickchallanDate: {
         type: Date,
         required: true,
