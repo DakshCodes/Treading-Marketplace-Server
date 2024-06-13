@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/create-quickchallan", async (req, res, next) => {
     try {
 
-        console.log(req.body,'quickchallan')
+        console.log(req.body, 'quickchallan')
         const quickchallanDoc = await QuickChallan.create(req.body);
 
         res.status(201).json({
@@ -110,17 +110,17 @@ router.put("/update-quick-challan-products/:id", async (req, res, next) => {
         const { productId, isProductDispatchedByInvoice } = req.body;
 
 
-        
-        
+
+
         const challanProductUpdated = await QuickChallan.findById(challanId);
 
-        
+
         challanProductUpdated?.products.map(product => {
-            if (product.product == productId) { 
+            if (product.product == productId) {
                 product.isProductDispatchedByInvoice = isProductDispatchedByInvoice;
             }
         })
-        
+
         console.log(challanProductUpdated, "uddated")
 
         const challan = await QuickChallan.findByIdAndUpdate(challanId, challanProductUpdated, { new: true });
@@ -131,6 +131,51 @@ router.put("/update-quick-challan-products/:id", async (req, res, next) => {
                 error: "Challan not found with this id",
             });
         }
+
+        res.status(200).json({
+            success: true,
+            message: "Challan updated successfully!",
+            challan,
+        });
+
+        // yha update ka logic likhna h 
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
+router.put("/update-quick-due-products/:id", async (req, res, next) => {
+    try {
+        const challanId = req.params.id;
+        const { productId, due } = req.body;
+
+        const challanProductUpdated = await QuickChallan.findById(challanId);
+        if (!challanProductUpdated) {
+            return res.status(404).json({
+                success: false,
+                error: "Challan not found with this id",
+            });
+        }
+
+        let productFound = false;
+        challanProductUpdated.products.forEach(product => {
+            if (product.product == productId) {
+                product.due = due;
+                productFound = true;
+            }
+        });
+
+        if (!productFound) {
+            return res.status(404).json({
+                success: false,
+                error: "Product not found with this id",
+            });
+        }
+
+        await challanProductUpdated.save();
 
         res.status(200).json({
             success: true,

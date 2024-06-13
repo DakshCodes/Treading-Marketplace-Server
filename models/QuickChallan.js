@@ -9,6 +9,10 @@ const ProductSchema = new Schema({
         required: true,
 
     },
+    due: {
+        type: Number,
+        default : 0
+    },
     cut: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Cut",
@@ -62,9 +66,9 @@ const QuickChallanSchema = new Schema({
         type: Date,
         required: true,
     },
-    challanType : {
+    challanType: {
         type: String,
-        default : "quick"
+        default: "quick"
     },
     type: {
         type: String,
