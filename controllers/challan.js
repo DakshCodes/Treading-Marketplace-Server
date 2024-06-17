@@ -145,5 +145,50 @@ router.put("/update-challan-products/:id", async (req, res, next) => {
         });
     }
 });
+router.put("/update-due-products/:id", async (req, res, next) => {
+    try { 
+        const challanId = req.params.id;
+        const { productId, due } = req.body;        
+        console.log(`Product Id : ${productId} and DUE : ${due}`);
+        
+        const challanProductUpdated = await Challan.findById(challanId);
+        if (!challanProductUpdated) {
+            return res.status(404).json({
+                success: false,
+                error: "Challan not found with this id",
+            });
+        }
+
+        let productFound = false;
+        challanProductUpdated.products.forEach(product => {
+            if (product.product == productId) { 
+                console.log("IN for " + product.product);
+                product.due = due;
+                productFound = true;
+            }
+        });
+
+        if (!productFound) {
+            return res.status(404).json({
+                success: false,
+                error: "Product not found with this id",
+            });
+        }
+        
+        await challanProductUpdated.save();
+        res.status(200).json({
+            success: true,
+            message: "Challan updated successfully!",
+            challan,
+        });
+
+        // yha update ka logic likhna h 
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
 
 export default router;

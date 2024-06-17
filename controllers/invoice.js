@@ -7,7 +7,6 @@ const router = express.Router();
 router.post("/create-invoice", async (req, res, next) => {
     try {
 
-        console.log(req.body, 'invoice')
         const invoiceDoc = await Invoice.create(req.body);
 
         res.status(201).json({
