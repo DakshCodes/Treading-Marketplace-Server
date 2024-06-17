@@ -109,32 +109,39 @@ router.put("/update-challan-products/:id", async (req, res, next) => {
         const { productId, isProductDispatchedByInvoice } = req.body;
 
 
-        
-        
         const challanProductUpdated = await Challan.findById(challanId);
-
-        
-        challanProductUpdated?.products.map(product => {
-            if (product.product == productId) { 
-                product.isProductDispatchedByInvoice = isProductDispatchedByInvoice;
-            }
-        })
-        
-        console.log(challanProductUpdated, "uddated")
-
-        const challan = await Challan.findByIdAndUpdate(challanId, challanProductUpdated, { new: true });
-
-        if (!challan) {
+        if (!challanProductUpdated) {
             return res.status(404).json({
                 success: false,
                 error: "Challan not found with this id",
             });
         }
 
+        let productFound = false;
+
+        challanProductUpdated?.products.map(product => {
+            if (product.product == productId) {
+                product.isProductDispatchedByInvoice = isProductDispatchedByInvoice;
+                productFound = true;
+            }
+        })
+
+
+        if (!productFound) {
+            return res.status(404).json({
+                success: false,
+                error: "Product not found with this id",
+            });
+        }
+
+        console.log(challanProductUpdated, "uddated")
+
+        await challanProductUpdated.save();
+
+
         res.status(200).json({
             success: true,
-            message: "Challan updated successfully!",
-            challan,
+            message: "Challan Dispatch successfully!"
         });
 
         // yha update ka logic likhna h 
@@ -146,11 +153,11 @@ router.put("/update-challan-products/:id", async (req, res, next) => {
     }
 });
 router.put("/update-due-products/:id", async (req, res, next) => {
-    try { 
+    try {
         const challanId = req.params.id;
-        const { productId, due } = req.body;        
+        const { productId, due } = req.body;
         console.log(`Product Id : ${productId} and DUE : ${due}`);
-        
+
         const challanProductUpdated = await Challan.findById(challanId);
         if (!challanProductUpdated) {
             return res.status(404).json({
@@ -161,7 +168,7 @@ router.put("/update-due-products/:id", async (req, res, next) => {
 
         let productFound = false;
         challanProductUpdated.products.forEach(product => {
-            if (product.product == productId) { 
+            if (product.product == productId) {
                 console.log("IN for " + product.product);
                 product.due = due;
                 productFound = true;
@@ -174,7 +181,7 @@ router.put("/update-due-products/:id", async (req, res, next) => {
                 error: "Product not found with this id",
             });
         }
-        
+
         await challanProductUpdated.save();
         res.status(200).json({
             success: true,
