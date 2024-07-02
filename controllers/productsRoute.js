@@ -2,7 +2,7 @@ import express from 'express';
 import Product from '../models/ProductModel.js'; // Adjust the path as needed
 import cloudinary from "../configs/cloudinaryConfig.js";
 import upload from '../middlewares/multer.js';
- 
+
 const router = express.Router();
 
 // Create a new product
@@ -68,15 +68,10 @@ router.post('/upload-challan-chart', upload.single('color-chart-challan'), async
 router.get('/get-all-products', async (req, res) => {
     try {
         const products = await Product.find()
-            // .populate('quality')
             .populate('supplierName')
             .populate('category')
-            // .populate('design')
-            // .populate('weave')
-            // .populate('width')
-            // .populate('finishtype')
-            // .populate('feeltype');
-            .sort({createdAt : -1});
+            .populate('pricePerUnit.unit') // Ensure correct path here
+            .sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,

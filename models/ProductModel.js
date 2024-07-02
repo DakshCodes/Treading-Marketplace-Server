@@ -49,7 +49,7 @@ const productSchema = new Schema({
         },
         unit: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "unit",
+            ref: "Unit",
             required: true
         }
     },
