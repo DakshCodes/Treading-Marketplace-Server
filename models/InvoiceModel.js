@@ -9,14 +9,14 @@ const InvoiceSchema = new Schema({
         ref: "Challan",
         required: [true, "please provide name"]
     }],
-    supplierRef: [{
+    supplierRef: {
         type: Schema.Types.ObjectId,
         ref: "suppliers",
-    }],
-    customerRef: [{
+    },
+    customerRef: {
         type: Schema.Types.ObjectId,
         ref: "Customer",
-    }],
+    },
     products: [
         {
             product: {
@@ -86,6 +86,9 @@ const InvoiceSchema = new Schema({
     invoiceNo: {
         type: String,
     },
+    // grandTotal: {
+    //     type: Number,
+    // },
     createdAt: {
         type: Date,
         default: Date.now(),
