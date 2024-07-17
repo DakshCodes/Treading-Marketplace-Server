@@ -26,7 +26,7 @@ router.get("/get-invoice/:id", async (req, res, next) => {
     try {
         const invoiceId = req.params.id;
 
-        const invoice = await Invoice.findById(invoiceId).populate('challanRef');
+        const invoice = await Invoice.findById(invoiceId).populate('challanRef').populate('supplierRef');
 
         if (!invoice) {
             return res.status(404).json({
