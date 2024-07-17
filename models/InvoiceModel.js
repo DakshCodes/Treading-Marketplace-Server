@@ -80,6 +80,9 @@ const InvoiceSchema = new Schema({
             },
         },
     ],
+    grandTotal: {
+        type: Number,
+    },
     invoiceDate: {
         type: String,
     },
