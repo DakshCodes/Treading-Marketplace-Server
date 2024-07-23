@@ -4,47 +4,56 @@ const { model, models, Schema } = mongoose;
 
 
 const customerSchema = new Schema({
-    name: {
-        type: String,
-        required: [true, "Customer not be empty"],
-        minlength : [1,"mininum 1 character required"],
-        validate: {
-            validator:(value)=> {
-              // Custom validator to check if the value is not an empty string
-              return value.trim().length > 0;
-            },
-            message: 'customer name cannot be an empty string'
-          },
+  name: {
+    type: String,
+    required: [true, "Customer not be empty"],
+    minlength: [1, "mininum 1 character required"],
+    validate: {
+      validator: (value) => {
+        // Custom validator to check if the value is not an empty string
+        return value.trim().length > 0;
+      },
+      message: 'customer name cannot be an empty string'
     },
-    companyName: {
-        type: String,
-        required: [true, "company not be empty"],
-        minlength : [1,"mininum 1 character required"],
-        validate: {
-            validator:(value)=> {
-              // Custom validator to check if the value is not an empty string
-              return value.trim().length > 0;
-            },
-            message: 'company name cannot be an empty string'
-          },
+  },
+  companyName: {
+    type: String,
+    required: [true, "company not be empty"],
+    minlength: [1, "mininum 1 character required"],
+    validate: {
+      validator: (value) => {
+        // Custom validator to check if the value is not an empty string
+        return value.trim().length > 0;
+      },
+      message: 'company name cannot be an empty string'
     },
-    // ref: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'categories' // The model this ObjectId refers to
-    // },
-   
-    // verified: {
-    //     type: Boolean,
-    //     default: false,
-    // },
-    // isNameNumerical: {
-    //     type: Boolean,
-    //     default: false,
-    // },
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-    },
+  },
+  // ref: {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'categories' // The model this ObjectId refers to
+  // },
+
+  // verified: {
+  //     type: Boolean,
+  //     default: false,
+  // },
+  balance: {
+    type: Number,
+    default: 0,
+  },
+  discount: {
+    type: Number,
+    default: 0,
+  },
+  interest: {
+    type: Number,
+    default: 0,
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 
 })
 
