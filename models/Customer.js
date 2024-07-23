@@ -3,6 +3,28 @@ import mongoose from "mongoose";
 const { model, models, Schema } = mongoose;
 
 
+const supplierBalanceSchema = new Schema({
+  supplier: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Supplier', // Assuming you have a Supplier model
+    required: true
+  },
+  balance: {
+    type: Number,
+    default: 0
+  },
+  discount: {
+    type: Number,
+    default: 0
+  },
+  interest: {
+    type: Number,
+    default: 0
+  }
+});
+
+
+
 const customerSchema = new Schema({
   name: {
     type: String,
@@ -37,18 +59,7 @@ const customerSchema = new Schema({
   //     type: Boolean,
   //     default: false,
   // },
-  balance: {
-    type: Number,
-    default: 0,
-  },
-  discount: {
-    type: Number,
-    default: 0,
-  },
-  interest: {
-    type: Number,
-    default: 0,
-  },
+  supplierBalances: [supplierBalanceSchema],
 
   createdAt: {
     type: Date,
