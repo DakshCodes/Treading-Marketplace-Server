@@ -7,68 +7,39 @@ const PaymentSchema = new mongoose.Schema({
         ref: 'Customer',
         required: true
     },
-
     supplierRef: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Supplier',
+        ref: 'suppliers',
         required: true
     },
-
-    amountEntered: {
-        type: Number,
-        required: true,
-        min: 0
-    },
-
-    // newTotalAmountEntered: {
-    //     type: Number,
-    //     required: true,
-    //     min: 0
-    // },
-
-    interestAmount: {
-        type: Number,
-        default: 0,
-        min: 0
-    },
-
-    newReferenceAdjust: {
-        type: Number,
-        default: 0,
-        min: 0
-    },
-
-    invoiceAdjustments: [{
-        invoiceId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Invoice'
-        },
-        originalAmount: Number,
-        adjustedAmount: Number,
-        remainingAmount: Number
-    }],
-
-    overAllDueAmount: {
-        type: Number,
-        default: 0,
-        min: 0
-    },
-
     paymentDate: {
         type: Date,
-        default: Date.now
+        required: true
     },
-
-    //   paymentStatus: {
-    //     type: String,
-    //     enum: ['Pending', 'Completed', 'Failed'],
-    //     default: 'Pending'
-    //   },
-    paymentMethod: {
+    amountEntered: {
+        type: Number,
+        required: true
+    },
+    paymentMode: {
         type: String,
         required: true
     },
-    notes: String
+    chequeNumber: {
+        type: String
+    },
+    adjustments: [{
+        invoiceNo: String,
+        adjust: Number,
+        discount: Number,
+        interest: Number,
+        remaining: Number
+    }],
+    newReference: {
+        currentBalance: Number,
+        adjust: Number,
+        newBalance: Number
+    }
+
 }, { timestamps: true });
 
 const Payment = mongoose.model('Payment', PaymentSchema);
