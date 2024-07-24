@@ -42,6 +42,40 @@ router.get("/get-all-customers", async (req, res, next) => {
     }
 });
 
+router.post('/initialize-balance', async (req, res) => {
+    try {
+        const { customerId, supplierId } = req.body;
+
+        const customer = await Customer.findById(customerId);
+
+        if (!customer) {
+            return res.status(404).json({ message: 'Customer not found' });
+        }
+
+        const existingBalance = customer.supplierBalances.find(
+            (sb) => sb.supplier.toString() === supplierId
+        );
+
+        if (!existingBalance) {
+            customer.supplierBalances.push({
+                supplier: supplierId,
+                balance: 0,
+                discount: 0,
+                interest: 0,
+            });
+
+            await customer.save();
+        }
+
+        res.status(200).json(customer);
+    } catch (error) {
+        console.error('Error initializing balance:', error);
+        res.status(500).json({ message: 'Error initializing balance' });
+    }
+});
+
+
+
 // Delete width
 router.delete("/delete-customer/:id", async (req, res, next) => {
    
