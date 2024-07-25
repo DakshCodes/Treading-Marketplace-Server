@@ -23,11 +23,11 @@ const ProductSchema = new Schema({
     },
     qtyPcs: {
         type: String,
-        required: true,
+        // required: true,
     },
     qtyMtr: {
         type: Number,
-        required: true,
+        // required: true,
     },
     unit: {
         type: String,
