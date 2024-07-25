@@ -83,6 +83,16 @@ const InvoiceSchema = new Schema({
     grandTotal: {
         type: Number,
     },
+    currentTotal: {
+        type: Number,
+        // required: true,
+        default: null
+    },
+    isCleared: {
+        type: Boolean,
+        // default: false
+        default: false
+    },
     invoiceDate: {
         type: String,
     },

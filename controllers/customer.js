@@ -42,6 +42,62 @@ router.get("/get-all-customers", async (req, res, next) => {
     }
 });
 
+
+router.post("/update-supplier-balance", async (req, res) => {
+    try {
+        const { updatedBalance,customerId, supplierId, invoiceAdjustments } = req.body;
+
+        // Fetch the customer document
+        const customer = await Customer.findById(customerId);
+        if (!customer) {
+            return res.status(404).json({ message: 'Customer not found' });
+        }
+
+        // Initialize or find the supplier balance entry
+        let supplierBalance = customer.supplierBalances.find(
+            balance => balance.supplier.toString() === supplierId
+        );
+
+        if (!supplierBalance) {
+            supplierBalance = {
+                supplier: supplierId,
+                balance: 0,
+                discount: 0,
+                interest: 0,
+            };
+            customer.supplierBalances.push(supplierBalance);
+        }
+
+        // Calculate the new balance, total discount, and total interest
+        let totalDiscount = 0;
+        let totalInterest = 0;
+        let totalRemaining = 0;
+
+        invoiceAdjustments.forEach(adjustment => {
+            totalDiscount += adjustment.discount || 0;
+            totalInterest += adjustment.interest || 0;
+            totalRemaining += adjustment.remaining || 0;
+        });
+
+        // Update the supplier balance fields
+        supplierBalance.balance = updatedBalance;
+        supplierBalance.discount += totalDiscount;
+        supplierBalance.interest += totalInterest;
+
+        // Save the customer document
+        await customer.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Supplier balance updated successfully!",
+            customer,
+        });
+    } catch (error) {
+        console.error('Error updating supplier balance:', error);
+        res.status(500).json({ message: 'Error updating supplier balance' });
+    }
+});
+
 router.post('/initialize-balance', async (req, res) => {
     try {
         const { customerId, supplierId } = req.body;

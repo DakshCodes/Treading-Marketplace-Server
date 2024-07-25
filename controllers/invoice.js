@@ -50,7 +50,8 @@ router.get("/get-invoice/:id", async (req, res, next) => {
 // Get all invoices
 router.get("/get-all-invoice", async (req, res, next) => {
     try {
-        const invoices = await Invoice.find({});;
+        // const invoices = await Invoice.find({ isCleared: false });;
+        const invoices = await Invoice.find({});
 
         res.status(200).json({
             success: true,
@@ -58,6 +59,50 @@ router.get("/get-all-invoice", async (req, res, next) => {
         });
     } catch (error) {
         return res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
+router.post("/process-payment", async (req, res, next) => {
+    try {
+        const { invoiceAdjustments } = req.body; // Array of objects containing invoiceId and adjustment amount
+
+        const updatePromises = invoiceAdjustments.map(async (adjustment) => {
+            const { invoiceId, remainingAmount } = adjustment;
+
+            const invoice = await Invoice.findById(invoiceId);
+            if (!invoice) {
+                throw new Error(`Invoice not found with ID ${invoiceId}`);
+            }
+
+            console.log(remainingAmount)
+            console.log(invoiceId)
+
+            let newCurrentTotal = remainingAmount;
+            newCurrentTotal = Math.max(newCurrentTotal, 0); // Ensure total doesn't go below zero
+
+            return Invoice.findByIdAndUpdate(
+                invoiceId,
+                { 
+                    currentTotal: newCurrentTotal,
+                    isCleared: newCurrentTotal === 0,
+                },
+                { new: true }
+            );
+        });
+
+        // Execute all updates
+        const updatedInvoices = await Promise.all(updatePromises);
+
+        res.status(200).json({
+            success: true,
+            message: "Invoices updated successfully!",
+            updatedInvoices,
+        });
+    } catch (error) {
+        res.status(400).json({
             success: false,
             error: error.message,
         });
