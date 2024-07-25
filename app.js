@@ -21,6 +21,7 @@ import attributeRoute from './controllers/attribute.js'
 import attributevalueRoute from './controllers/attributeValue.js'
 import invoiceRoute from './controllers/invoice.js'
 import paymentModeRoute from './controllers/paymentMode.js'
+import payment from './controllers/payment.js'
 
 
 
@@ -49,6 +50,7 @@ app.use('/api/attributeValue',attributevalueRoute);
 app.use('/api/quickchallan', quickchallanRoute);
 app.use('/api/invoice', invoiceRoute);
 app.use('/api/paymentmode', paymentModeRoute);
+app.use('/api/payment', payment);
 
 
 
