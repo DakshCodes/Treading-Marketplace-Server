@@ -83,6 +83,18 @@ const InvoiceSchema = new Schema({
     grandTotal: {
         type: Number,
     },
+    discount : {
+        type: Number,
+    },
+    gst : {
+        type: Number,
+    },
+    otherExpenses : {
+        type: Number,
+    },
+    totalBillingAmount : {
+        type: Number,
+    },
     currentTotal: {
         type: Number,
         // required: true,
