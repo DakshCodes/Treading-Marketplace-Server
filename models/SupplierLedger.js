@@ -5,7 +5,7 @@ const { model, models, Schema } = mongoose;
 const supplierLedgerSchema = new Schema({
     supplierRef: {
         type: Schema.Types.ObjectId,
-        ref: "Supplier",
+        ref: "suppliers",
     },
 
     paymentRef: {
@@ -14,28 +14,45 @@ const supplierLedgerSchema = new Schema({
     },
     invoiceRef: {
         type: Schema.Types.ObjectId,
-        ref: "Invoice",
+        ref: "invoices",
     },
-    
-    credit : {
+    amount: {
         type: Number,
+        required: true,
     },
-    debit : {
+    transactionType: {
+        type: String,
+        enum: ["invoice", "payment"],
+        required: true
+    },
+    credit: {
         type: Number,
+        default: 0
+    },
+    debit: {
+        type: Number,
+        default: 0
     },
 
-    Balance : {
+    balance: {
         type: Number,
+        default: 0
     },
+}, {
+    timestamps: true
+})
 
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-      },
-    
-    })
-    
-    const SupplierLedger = models?.Suppliers || model('suppliers', supplierLedgerSchema);
-    
-    export default SupplierLedger; // Change this line to use default export
-    
+supplierLedgerSchema.pre('save', function (next) {
+    if (this.transactionType === "invoice") {
+        this.credit = this.amount;
+        this.balance = this.balance + this.amount;
+    } else if (this.transactionType === "payment") {
+        this.debit = this.amount;
+        this.balance -= this.amount;
+    }
+    next();
+});
+
+const SupplierLedger = models?.SupplierLedger || model('SupplierLedger', supplierLedgerSchema);
+
+export default SupplierLedger; // Change this line to use default export

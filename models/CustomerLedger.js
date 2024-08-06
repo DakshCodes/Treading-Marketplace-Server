@@ -14,28 +14,45 @@ const customerLedgerSchema = new Schema({
     },
     invoiceRef: {
         type: Schema.Types.ObjectId,
-        ref: "Invoice",
+        ref: "invoices",
     },
-    
-    credit : {
+    amount: {
         type: Number,
+        required: true,
     },
-    debit : {
+    transactionType: {
+        type: String,
+        enum: ["invoice", "payment"],
+        required: true
+    },
+    credit: {
         type: Number,
+        default: 0
+    },
+    debit: {
+        type: Number,
+        default: 0
     },
 
-    Balance : {
+    balance: {
         type: Number,
+        default: 0
     },
+}, {
+    timestamps: true
+})
 
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-      },
-    
-    })
-    
-    const CustomerLedger = models?.Customers || model('CustomerLedger', customerLedgerSchema);
-    
-    export default CustomerLedger; // Change this line to use default export
-    
+customerLedgerSchema.pre('save', function (next) {
+    if (this.transactionType === "invoice") {
+        this.debit = this.amount;
+        this.balance = this.balance - this.amount;
+    } else if (this.transactionType === "payment") {
+        this.credit = this.amount;
+        this.balance += this.amount;
+    }
+    next();
+});
+
+const CustomerLedger = models?.CustomerLedger || model('CustomerLedger', customerLedgerSchema);
+
+export default CustomerLedger; // Change this line to use default export
