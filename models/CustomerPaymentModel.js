@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Mongoose } from 'mongoose';
 
 const CustomerPaymentSchema = new mongoose.Schema({
 
@@ -24,10 +24,20 @@ const CustomerPaymentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    whomToPay: {
+        type: String,
+        enum: ['supplier', 'self'],
+        required: true
+    },
     chequeNumber: {
         type: String
     },
     adjustments: [{
+        invoiceId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'invoices',
+            required: true
+        },
         invoiceNo: String,
         adjust: Number,
         discount: Number,

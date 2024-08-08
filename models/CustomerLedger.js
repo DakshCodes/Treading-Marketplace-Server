@@ -16,6 +16,9 @@ const customerLedgerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "invoices",
     },
+    advancePaymentRef: {
+        type: String, // New field to store the UUID
+    },
     amount: {
         type: Number,
         required: true,
