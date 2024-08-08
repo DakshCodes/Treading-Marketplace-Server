@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const PaymentSchema = new mongoose.Schema({
+const SupplierPaymentSchema = new mongoose.Schema({
 
     customerRef: {
         type: mongoose.Schema.Types.ObjectId,
@@ -42,6 +42,6 @@ const PaymentSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-const Payment = mongoose.model('Payment', PaymentSchema);
+const SupplierPayment = mongoose.model('SupplierPayment', SupplierPaymentSchema);
 
-export default Payment;
+export default SupplierPayment;

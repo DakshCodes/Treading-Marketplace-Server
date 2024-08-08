@@ -1,21 +1,20 @@
 import express from "express";
-import Payment from "../models/PaymentModel.js";
-
+import Customerpayment from "../models/CustomerPaymentModel.js"
 const router = express.Router();
 
 // Create width
-router.post("/create-payment", async (req, res, next) => {
+router.post("/create-customerpayment", async (req, res, next) => {
     try {
-        const paymentDoc = await Payment.create(req.body);
+        const customerpaymentDoc = await Customerpayment.create(req.body);
 
         res.status(201).json({
             message: "Create Successfully",
             success: true,
-            paymentDoc,
+            customerpaymentDoc,
         });
     } catch (error) {
         res.json({
-            message : "payment not be empty",
+            message : "customerpayment not be empty",
             success: false,
             error: error.message,
         }).status(404);
@@ -24,13 +23,13 @@ router.post("/create-payment", async (req, res, next) => {
 
 
 // Get all widths
-router.get("/get-all-payment", async (req, res, next) => {
+router.get("/get-all-customerpayments", async (req, res, next) => {
     try {
-        const payments = await Payment.find({});
+        const customerpayments = await Customerpayment.find({});
 
         res.status(200).json({
             success: true,
-            payments,
+            customerpayments,
         });
     } catch (error) {
         return res.status(400).json({
@@ -41,24 +40,24 @@ router.get("/get-all-payment", async (req, res, next) => {
 });
 
 // Delete width
-router.delete("/delete-payment/:id", async (req, res, next) => {
+router.delete("/delete-customerpayment/:id", async (req, res, next) => {
    
     try {
-        const paymentId = req.params.id;
-        console.log(paymentId)
+        const customerpaymentId = req.params.id;
+        console.log(customerpaymentId)
      
-        const payment = await Payment.findByIdAndDelete(paymentId);
-        if (!payment) {
+        const customerpayment = await Customerpayment.findByIdAndDelete(customerpaymentId);
+        if (!customerpayment) {
             return res.status(404).json({
                 success: false,
-                error: "payment not found with this id",
+                error: "customerpayment not found with this id",
             });
         }
 
         res.status(200).json({
             success: true,
-            message: "payment deleted successfully!",
-            payment,
+            message: "customerpayment deleted successfully!",
+            customerpayment,
         });
     } catch (error) {
         return res.status(400).json({
@@ -69,27 +68,27 @@ router.delete("/delete-payment/:id", async (req, res, next) => {
 });
 
 // Update width
-router.put("/update-payment/:id", async (req, res, next) => {
+router.put("/update-customerpayment/:id", async (req, res, next) => {
     try {
-        const paymentId = req.params.id;
+        const customerpaymentId = req.params.id;
 
-        const payment = await Payment.findByIdAndUpdate(
-            paymentId,
+        const customerpayment = await Customerpayment.findByIdAndUpdate(
+            customerpaymentId,
             req.body,
             { new: true } // Add this option to return the updated document
         );
 
-        if (!payment) {
+        if (!customerpayment) {
             return res.status(404).json({
                 success: false,
-                error: "payment not found with this id",
+                error: "customerpayment not found with this id",
             });
         }
 
         res.status(200).json({
             success: true,
-            message: "payment updated successfully!",
-            payment,
+            message: "customerpayment updated successfully!",
+            customerpayment,
         });
     } catch (error) {
         return res.status(400).json({
