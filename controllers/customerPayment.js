@@ -74,6 +74,41 @@ router.post("/create-customerpayment", async (req, res, next) => {
 
         } else if (whomToPay === 'self') {
             // make changes in customer ledger only
+
+            for (const adjustment of adjustments) {
+                const { invoiceId, adjust } = adjustment;
+
+                // Create a new entry in CustomerLedger
+                const customerLedgerEntry = new CustomerLedger({
+                    customerRef,
+                    paymentRef: customerpaymentDoc._id,
+                    invoiceRef: invoiceId,
+                    amount: adjust,
+                    transactionType: 'payment',
+                    credit: adjust,
+                    balance: 0 // Will be updated by pre-save hook
+                });
+
+                // Save both ledger entries
+                await customerLedgerEntry.save();
+            }
+
+            // Handle advance payment (newReference) entry after all invoices have been added
+            if (newReference && newReference.adjust > 0) {
+                const uniqueInvoiceRef = uuidv4(); // Generate a unique ID for advance payment
+                console.log(uniqueInvoiceRef, '::::::::::::');
+
+                // Create an entry in CustomerLedger for the advance payment
+                await CustomerLedger.create({
+                    customerRef,
+                    paymentRef: customerpaymentDoc._id,
+                    advancePaymentRef: uniqueInvoiceRef, // Use the unique ID in advancePaymentRef
+                    amount: newReference.adjust,
+                    transactionType: 'payment',
+                    credit: newReference.adjust,
+                    balance: 0 // Will be updated by pre-save hook
+                });
+            }
         }
 
         res.status(201).json({

@@ -102,7 +102,10 @@ const InvoiceSchema = new Schema({
     },
     isCleared: {
         type: Boolean,
-        // default: false
+        default: false
+    },
+    isPaidToSupplier: {
+        type: Boolean,
         default: false
     },
     invoiceDate: {

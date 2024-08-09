@@ -28,6 +28,11 @@ const SupplierPaymentSchema = new mongoose.Schema({
         type: String
     },
     adjustments: [{
+        invoiceId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'invoices',
+            required: true
+        },
         invoiceNo: String,
         adjust: Number,
         discount: Number,
