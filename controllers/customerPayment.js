@@ -42,6 +42,9 @@ router.post("/create-customerpayment", async (req, res, next) => {
                 // Save both ledger entries
                 await customerLedgerEntry.save();
                 await supplierLedgerEntry.save();
+
+                console.log(customerLedgerEntry, "customerrr")
+                console.log(supplierLedgerEntry, "supplierrrr")
             }
 
             // Handle advance payment (newReference) entry after all invoices have been added

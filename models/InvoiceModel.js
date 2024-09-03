@@ -114,6 +114,10 @@ const InvoiceSchema = new Schema({
     invoiceNo: {
         type: String,
     },
+    balance : {
+        type : Number,
+        default : 0
+    },
     // grandTotal: {
     //     type: Number,
     // },

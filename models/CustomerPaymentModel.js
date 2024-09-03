@@ -42,7 +42,16 @@ const CustomerPaymentSchema = new mongoose.Schema({
         adjust: Number,
         discount: Number,
         interest: Number,
-        remaining: Number
+        remaining: Number,
+        balance : {
+            type : Number,
+            default: 0
+        },
+        whomToPay: {
+            type: String,
+            enum: ['supplier', 'self'],
+            required: true
+        },
     }],
     newReference: {
         currentBalance: Number,

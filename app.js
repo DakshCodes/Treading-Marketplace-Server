@@ -23,6 +23,8 @@ import invoiceRoute from './controllers/invoice.js'
 import paymentModeRoute from './controllers/paymentMode.js'
 import customerPayment from './controllers/customerPayment.js'
 import supplierPayment from './controllers/supplierPayment.js'
+import customerLedger from './controllers/customerLedger.js'
+import supplierLedger from './controllers/supplierLedger.js'
 
 
 const app = express();
@@ -52,6 +54,8 @@ app.use('/api/invoice', invoiceRoute);
 app.use('/api/paymentmode', paymentModeRoute);
 app.use('/api/customerpayment', customerPayment);
 app.use('/api/supplierpayment',supplierPayment  );
+app.use('/api/customerledger',customerLedger  );
+app.use('/api/supplierledger',supplierLedger );
 
 
 
